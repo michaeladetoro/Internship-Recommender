@@ -147,14 +147,13 @@ def edit_company_profile():
     if request.method == 'POST':
         company.name = request.form['name']
         company.email = request.form['email']
-        company.description = request.form['description']
+        company.about = request.form['about']
         company.location = request.form['location']
         company.website = request.form['website']
         company.password = request.form['password']
         company.industry = request.form['industry']
 
         db.session.commit()
-        flash('Company profile updated successfully', 'success')
         return redirect(url_for('company_dashboard'))
 
     return render_template('edit_company_profile.html', company=company)
@@ -239,13 +238,8 @@ def edit_internship():
         internship.duration = request.form.get('duration')
         internship.requirements = request.form.get('requirements')
 
-        try:
-            db.session.commit()
-            flash('Internship updated successfully', 'success')
-            return redirect(url_for('company_dashboard'))
-        except Exception as e:
-            db.session.rollback()
-            flash(f'An error occurred: {str(e)}', 'error')
+        db.session.commit()
+        return redirect(url_for('company_dashboard'))
     
     return render_template('edit_internship.html', internship=internship)
 
