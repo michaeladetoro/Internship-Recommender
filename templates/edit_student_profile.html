@@ -147,38 +147,36 @@
     <div class="main-content" style="margin-top: 80px;">
         <div class="card">
             <div class="form-container">
-                <form id="editStudentProfileForm" method="POST">
+                <form id="editStudentProfileForm" method="POST" action="{{ url_for('edit_student_profile') }}">
                     <div class="form-group">
                         <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" value="{{ student.name }}" required>
+                        <input type="text" id="name" name="name" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" value="{{ student.email }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="course_of_study">Course of Study</label>
-                        <input type="text" id="course_of_study" name="course_of_study" value="{{ student.course_of_study }}">
+                        <input type="email" id="email" name="email" required>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" id="password" name="password" value="{{ student.password }}">
+                        <input type="password" id="password" name="password">
+                    </div>
+                    <div class="form-group">
+                        <label for="university">University</label>
+                        <input type="text" id="university" name="university">
+                    </div>
+                    <div class="form-group">
+                        <label for="major">Major</label>
+                        <input type="text" id="major" name="major">
+                    </div>
+                    <div class="form-group">
+                        <label for="graduation_year">Graduation Year</label>
+                        <input type="number" id="graduation_year" name="graduation_year">
                     </div>
                     <div class="form-group">
                         <label for="skills">Skills</label>
-                        <textarea id="skills" name="skills">{{ student.skills }}</textarea>
+                        <textarea id="skills" name="skills"></textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="bio">Bio</label>
-                        <textarea id="bio" name="bio">{{ student.bio }}</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="location_of_interest">Location of Interest</label>
-                        <input type="text" id="location_of_interest" name="location_of_interest" value="{{ student.location_of_interest }}">
-                    </div>
-                    <div class="button-container">
-                        <button type="submit" class="button">Save Changes</button>
-                    </div>
+                    <button type="submit" class="button">Save Changes</button>
                 </form>
             </div>
         </div>

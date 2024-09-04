@@ -140,31 +140,31 @@
             <form id="editCompanyProfileForm" method="POST" action="{{ url_for('edit_company_profile') }}">
                 <div class="form-group">
                     <label for="name">Company Name</label>
-                    <input type="text" id="name" name="name" value="{{ company.name }}" required>
+                    <input type="text" id="name" name="name" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" value="{{ company.email }}" required>
+                    <input type="email" id="email" name="email" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" value="{{ company.password }}">
+                    <input type="password" id="password" name="password">
                 </div>
                 <div class="form-group">
                     <label for="industry">Industry</label>
-                    <input type="text" id="industry" name="industry" value="{{ company.industry }}">
+                    <input type="text" id="industry" name="industry">
                 </div>
                 <div class="form-group">
                     <label for="about">About</label>
-                    <textarea id="about" name="about">{{ company.about }}</textarea>
+                    <textarea id="about" name="about"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="location">Location</label>
-                    <input type="text" id="location" name="location" value="{{ company.location }}">
+                    <input type="text" id="location" name="location">
                 </div>
                 <div class="form-group">
                     <label for="website">Website</label>
-                    <input type="text" id="website" name="website" value="{{ company.website }}">
+                    <input type="text" id="website" name="website">
                 </div>
                 <button type="submit" class="button">Save Changes</button>
             </form>

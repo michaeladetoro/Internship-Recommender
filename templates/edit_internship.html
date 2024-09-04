@@ -103,24 +103,24 @@
 <body>
     <div class="container">
         <h1>Edit Internship</h1>
-        <form id="editInternshipForm" ation="{{ url_for('edit_internship', internship_id=internship.id) }}" method="post">
+        <form id="editInternshipForm" action="{{ url_for('edit_internship', internship_id=internship.id) }}" method="post">
             <label for="role">Role</label>
-            <input type="text" id="role" name="role" value="{{ internship.role }}" required>
+            <input type="text" id="role" name="role" required>
             
             <label for="description">Description</label>
-            <textarea id="description" name="description" rows="4" required>{{ internship.description }}</textarea>
+            <textarea id="description" name="description" rows="4" required></textarea>
             
             <label for="location">Location</label>
-            <input type="text" id="location" name="location" value="{{ internship.location }}" required>
+            <input type="text" id="location" name="location" required>
             
             <label for="start_date">Start Date</label>
-            <input type="date" id="start_date" name="start_date" value="{{ internship.start_date.strftime('%Y-%m-%d') }}" required>
+            <input type="date" id="start_date" name="start_date" required>
             
             <label for="duration">Duration</label>
-            <input type="text" id="duration" name="duration" value="{{ internship.duration }}" required>
+            <input type="text" id="duration" name="duration" required>
             
             <label for="requirements">Requirements</label>
-            <textarea id="requirements" name="requirements" rows="4" required>{{ internship.requirements }}</textarea>
+            <textarea id="requirements" name="requirements" rows="4" required></textarea>
             
             <button type="submit">Update Internship</button>
         </form>
