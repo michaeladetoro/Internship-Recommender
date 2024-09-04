@@ -150,31 +150,31 @@
                 <form id="editStudentProfileForm" method="POST">
                     <div class="form-group">
                         <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" required>
+                        <input type="text" id="name" name="name" value="{{ student.name }}" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" value="{{ student.email }}" required>
                     </div>
                     <div class="form-group">
                         <label for="course_of_study">Course of Study</label>
-                        <input type="text" id="course_of_study" name="course_of_study" >
+                        <input type="text" id="course_of_study" name="course_of_study" value="{{ student.course_of_study }}">
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" id="password" name="password" >
+                        <input type="password" id="password" name="password" value="{{ student.password }}">
                     </div>
                     <div class="form-group">
                         <label for="skills">Skills</label>
-                        <textarea id="skills" name="skills"></textarea>
+                        <textarea id="skills" name="skills">{{ student.skills }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="bio">Bio</label>
-                        <textarea id="bio" name="bio"></textarea>
+                        <textarea id="bio" name="bio">{{ student.bio }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="location_of_interest">Location of Interest</label>
-                        <input type="text" id="location_of_interest" name="location_of_interest" >
+                        <input type="text" id="location_of_interest" name="location_of_interest" value="{{ student.location_of_interest }}">
                     </div>
                     <div class="button-container">
                         <button type="submit" class="button">Save Changes</button>
@@ -192,9 +192,9 @@
 
     <script>
         document.getElementById('editStudentProfileForm').addEventListener('submit', function(event) {
-            event.preventDefault();
+            // Remove the event.preventDefault() call
             showPopup();
-            clearForm();
+            // Remove the clearForm() call
         });
 
         function showPopup() {
@@ -203,12 +203,10 @@
 
         function closePopup() {
             document.getElementById('popup').style.display = 'none';
-            window.location.href = "{{ url_for('student_dashboard') }}";
+            // Remove the redirect, as it will be handled by the server
         }
 
-        function clearForm() {
-            document.getElementById('editStudentProfileForm').reset();
-        }
+        // Remove the clearForm() function as it's no longer needed
     </script>
 </body>
 </html>

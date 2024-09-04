@@ -105,22 +105,22 @@
         <h1>Edit Internship</h1>
         <form id="editInternshipForm" ation="{{ url_for('edit_internship', internship_id=internship.id) }}" method="post">
             <label for="role">Role</label>
-            <input type="text" id="role" name="role" required>
+            <input type="text" id="role" name="role" value="{{ internship.role }}" required>
             
             <label for="description">Description</label>
-            <textarea id="description" name="description" rows="4" required></textarea>
+            <textarea id="description" name="description" rows="4" required>{{ internship.description }}</textarea>
             
             <label for="location">Location</label>
-            <input type="text" id="location" name="location" required>
+            <input type="text" id="location" name="location" value="{{ internship.location }}" required>
             
             <label for="start_date">Start Date</label>
-            <input type="date" id="start_date" name="start_date"  required>
+            <input type="date" id="start_date" name="start_date" value="{{ internship.start_date.strftime('%Y-%m-%d') }}" required>
             
             <label for="duration">Duration</label>
-            <input type="text" id="duration" name="duration" required>
+            <input type="text" id="duration" name="duration" value="{{ internship.duration }}" required>
             
             <label for="requirements">Requirements</label>
-            <textarea id="requirements" name="requirements" rows="4" required></textarea>
+            <textarea id="requirements" name="requirements" rows="4" required>{{ internship.requirements }}</textarea>
             
             <button type="submit">Update Internship</button>
         </form>
@@ -134,9 +134,9 @@
 
     <script>
         document.getElementById('editInternshipForm').addEventListener('submit', function(event) {
-            event.preventDefault();
+            // Remove the event.preventDefault() call
             showPopup();
-            clearForm();
+            // Remove the clearForm() call
         });
 
         function showPopup() {
@@ -145,12 +145,10 @@
 
         function closePopup() {
             document.getElementById('popup').style.display = 'none';
-            window.location.href = "{{ url_for('company_dashboard') }}";
+            // Remove the redirect, as it will be handled by the server
         }
 
-        function clearForm() {
-            document.getElementById('editInternshipForm').reset();
-        }
+        // Remove the clearForm() function as it's no longer needed
     </script>
 </body>
 </html>
