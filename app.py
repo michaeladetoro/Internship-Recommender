@@ -188,7 +188,7 @@ def recommender():
 
 # /------------------------------------------Recommend----------------------------------------------/
 
-# /------------------------------------------Post Internship----------------------------------------/
+# /------------------------------------------Internship---------------------------------------------/
 
 @app.route('/post_internship', methods=['GET', 'POST'])
 def post_internship():
@@ -208,14 +208,9 @@ def post_internship():
         return redirect(url_for('company_dashboard'))
     return render_template('post_internship.html')
 
-# /------------------------------------------Post Internship----------------------------------------/
-
-# /----------------------------------------Delete Internship----------------------------------------/
-
-@app.route('/delete_internship', methods=['POST'])
-def delete_internship():
-    internship = db.session.get(Internship, session['internship_id'])
-
+@app.route('/delete_internship/<int:internship_id>', methods=['POST'])
+def delete_internship(internship_id):
+    internship = Internship.query.get_or_404(internship_id)
     if internship:
         db.session.delete(internship)
         db.session.commit()
@@ -223,27 +218,30 @@ def delete_internship():
         flash('Internship not found.', 'error')
     return redirect(url_for('company_dashboard'))
 
-# /----------------------------------------Delete Internship----------------------------------------/
-
-# /------------------------------------------Edit Internship----------------------------------------/
-@app.route('/edit_internship', methods=['GET', 'POST'])
-def edit_internship():
-    internship = db.session.get(Internship, session['internship_id'])
+@app.route('/edit_internship/<int:internship_id>', methods=['GET', 'POST'])
+def edit_internship(internship_id):
+    internship = Internship.query.get_or_404(internship_id)
+    if internship.company_id != session.get('company_id'):
+        flash('You do not have permission to edit this internship.', 'error')
+        return redirect(url_for('company_dashboard'))
     
     if request.method == 'POST':
         internship.role = request.form.get('role')
         internship.description = request.form.get('description')
         internship.location = request.form.get('location')
-        internship.start_date = request.form.get('start_date')
+        # Convert the string date to a Python date object
+        start_date_str = request.form.get('start_date')
+        internship.start_date = datetime.strptime(start_date_str, '%Y-%m-%d').date()
         internship.duration = request.form.get('duration')
         internship.requirements = request.form.get('requirements')
 
         db.session.commit()
+        flash('Internship updated successfully.', 'success')
         return redirect(url_for('company_dashboard'))
     
     return render_template('edit_internship.html', internship=internship)
 
-# /------------------------------------------Edit Internship----------------------------------------/
+# /-----------------------------------------Internship---------------------------------------------/
 
 if __name__ == '__main__':
     app.run(debug=True)
