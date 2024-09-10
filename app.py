@@ -208,15 +208,20 @@ def post_internship():
         return redirect(url_for('company_dashboard'))
     return render_template('post_internship.html')
 
-@app.route('/delete_internship/<int:internship_id>', methods=['POST'])
+@app.route('/delete_internship/<int:internship_id>', methods=['GET', 'POST'])
 def delete_internship(internship_id):
     internship = Internship.query.get_or_404(internship_id)
-    if internship:
+    if internship.company_id != session.get('company_id'):
+        flash('You do not have permission to delete this internship.', 'error')
+        return redirect(url_for('company_dashboard'))
+    
+    if request.method == 'POST':
         db.session.delete(internship)
         db.session.commit()
-    else:
-        flash('Internship not found.', 'error')
-    return redirect(url_for('company_dashboard'))
+        flash('Internship deleted successfully.', 'success')
+        return redirect(url_for('company_dashboard'))
+    
+    return render_template('delete_internship.html', internship=internship)
 
 @app.route('/edit_internship/<int:internship_id>', methods=['GET', 'POST'])
 def edit_internship(internship_id):

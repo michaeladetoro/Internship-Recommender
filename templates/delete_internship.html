@@ -71,12 +71,19 @@
 </head>
 <body>
     <div class="container">
-        <h1>Confirm Deletion</h1>
-        <p>Are you sure you want to delete the internship titled "<strong>{{ internship.role }}</strong>"?</p>
-        <form action="{{ url_for('delete_internship', internship_id=internship.id) }}" method="post">
-            <button type="submit" class="button">Delete</button>
-            <a href="{{ url_for('company_dashboard') }}" class="button cancel-button">Cancel</a>
+        <h1>Confirm Delete Internship</h1>
+        <p>Are you sure you want to delete the following internship?</p>
+        <ul>
+            <li><strong>Role:</strong> {{ internship.role }}</li>
+            <li><strong>Description:</strong> {{ internship.description }}</li>
+            <li><strong>Location:</strong> {{ internship.location }}</li>
+            <li><strong>Start Date:</strong> {{ internship.start_date.strftime('%Y-%m-%d') }}</li>
+            <li><strong>Duration:</strong> {{ internship.duration }}</li>
+        </ul>
+        <form method="POST" action="{{ url_for('delete_internship', internship_id=internship.id) }}">
+            <button type="submit">Confirm Delete</button>
         </form>
+        <a href="{{ url_for('company_dashboard') }}">Cancel</a>
     </div>
 </body>
 </html>
