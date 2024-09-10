@@ -180,7 +180,8 @@ def recommender():
     
     for internship, company in internships:
         requirements = internship.requirements.lower()
-        if any(skill.lower() in requirements for skill in student_skills):
+        description = internship.description.lower()
+        if any(skill.lower() in requirements or skill.lower() in description for skill in student_skills):
             filtered_internships.append((internship, company))
     
     return render_template('recommender.html', student=student, recommendations=filtered_internships)
