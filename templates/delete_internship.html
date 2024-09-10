@@ -38,21 +38,32 @@
             color: #7f8c8d;
         }
 
+        ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
         .button {
             display: inline-block;
             padding: 10px 20px;
             font-size: 16px;
             color: #fff;
-            background-color: #1abc9c;
+            background-color: #e74c3c;
             border: none;
             border-radius: 5px;
             text-decoration: none;
             margin: 10px;
             transition: background-color 0.3s, transform 0.3s;
+            cursor: pointer;
         }
 
         .button:hover {
-            background-color: #16a085;
+            background-color: #c0392b;
             transform: translateY(-3px);
         }
 
@@ -61,11 +72,11 @@
         }
 
         .cancel-button {
-            background-color: #e74c3c;
+            background-color: #3498db;
         }
 
         .cancel-button:hover {
-            background-color: #c0392b;
+            background-color: #2980b9;
         }
     </style>
 </head>
@@ -76,14 +87,15 @@
         <ul>
             <li><strong>Role:</strong> {{ internship.role }}</li>
             <li><strong>Description:</strong> {{ internship.description }}</li>
+            <li><strong>Requirements:</strong> {{ internship.requirements }}</li>
             <li><strong>Location:</strong> {{ internship.location }}</li>
             <li><strong>Start Date:</strong> {{ internship.start_date.strftime('%Y-%m-%d') }}</li>
             <li><strong>Duration:</strong> {{ internship.duration }}</li>
         </ul>
         <form method="POST" action="{{ url_for('delete_internship', internship_id=internship.id) }}">
-            <button type="submit">Confirm Delete</button>
+            <button type="submit" class="button">Confirm Delete</button>
         </form>
-        <a href="{{ url_for('company_dashboard') }}">Cancel</a>
+        <a href="{{ url_for('company_dashboard') }}" class="button cancel-button">Cancel</a>
     </div>
 </body>
 </html>
