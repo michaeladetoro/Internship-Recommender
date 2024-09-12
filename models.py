@@ -2,6 +2,10 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
+def init_db(app):
+    db.init_app(app)
+
+# Define your models here
 class Student(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
@@ -31,8 +35,3 @@ class Internship(db.Model):
     start_date = db.Column(db.Date)
     duration = db.Column(db.String(50))
     requirements = db.Column(db.Text)
-
-def init_db(app):
-    db.init_app(app)
-    with app.app_context():
-        db.create_all()
