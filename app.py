@@ -1,12 +1,15 @@
+import os
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from models import db, Student, Company, Internship, init_db
 from sqlalchemy.exc import IntegrityError
 from datetime import datetime
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+
+# Use the DATABASE_URL environment variable provided by Render
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 init_db(app)
 
 @app.route('/')

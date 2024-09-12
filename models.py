@@ -32,13 +32,6 @@ class Internship(db.Model):
     duration = db.Column(db.String(50))
     requirements = db.Column(db.Text)
 
-# class StudentInternship(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     student_id = db.Column(db.Integer, db.ForeignKey('student.id'), nullable=False)
-#     internship_id = db.Column(db.Integer, db.ForeignKey('internship.id'), nullable=False)
-#     status = db.Column(db.String(20), default='applied')  # Can be 'applied', 'accepted', 'rejected'
-#     application_date = db.Column(db.DateTime, default=datetime.utcnow)
-
 def init_db(app):
     db.init_app(app)
     with app.app_context():
