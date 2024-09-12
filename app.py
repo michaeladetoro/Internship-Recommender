@@ -6,10 +6,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-# Use the DATABASE_URL environment variable provided by Render
-app.secret_key = 'your_secret_key'
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///database.db')
-# postgresql://internship_tm9k_user:Xg4JeURoO6n3O6oZblRhbYp3V4DZPCMs@dpg-crhfutrv2p9s73fkesn0-a.oregon-postgres.render.com/internship_tm9k
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 init_db(app)
