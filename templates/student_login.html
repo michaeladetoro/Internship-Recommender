@@ -18,6 +18,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            overflow: hidden;
         }
 
         .container {
@@ -29,6 +30,7 @@
             text-align: center;
             max-width: 400px;
             width: 100%;
+            margin: 0 20px; /* Margin on the sides */
         }
 
         h1 {
@@ -99,6 +101,7 @@
         .signup a:hover {
             color: #007bff;
         }
+
         .flash-message {
             margin: 10px 0;
             padding: 10px;
@@ -108,17 +111,43 @@
             display: inline-block;
             font-size: 14px;
         }
+
         .flash-message.success {
             background-color: #d4edda;
             color: #155724;
         }
+
         .flash-message.info {
             background-color: #d1ecf1;
             color: #0c5460;
         }
+
         .flash-message.warning {
             background-color: #fff3cd;
             color: #856404;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 0 20px; /* Margin for small screens */
+            }
+
+            .container {
+                padding: 30px;
+                margin: 0; /* Remove side margin on very small screens */
+            }
+
+            input[type="email"], input[type="password"], button {
+                max-width: 100%;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .signup p {
+                font-size: 12px;
+            }
         }
     </style>
 </head>

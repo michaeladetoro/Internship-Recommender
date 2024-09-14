@@ -23,8 +23,10 @@
             position: fixed;
             height: 100vh;
             top: 0;
-            left: 0;
+            left: -250px; /* Hidden initially for mobile */
+            transition: left 0.3s ease;
             box-sizing: border-box;
+            z-index: 1000;
         }
 
         .sidebar h2 {
@@ -101,6 +103,7 @@
             left: 0;
             top: 0;
             box-sizing: border-box;
+            z-index: 1000;
         }
         .top-bar h2 {
             margin: 0;
@@ -137,11 +140,78 @@
             margin: 5px 0 0;
             color: #7f8c8d;
         }
+
+        /* Menu button for mobile */
+        .menu-button {
+            display: block;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            position: fixed;
+            top: 12px;
+            right: 20px;
+            z-index: 1001;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: #1abc9c;
+            margin: 4px 0;
+            transition: 0.3s;
+        }
+
+        .sidebar.active {
+            left: 0; /* Show sidebar when active */
+        }
+
+        /* Media query for responsiveness */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 250px;
+                left: -250px; /* Hide sidebar by default on mobile */
+            }
+            .main-content {
+                margin-left: 0;
+                width: 100%; /* Full width for mobile */
+            }
+            .top-bar {
+                left: 0;
+                width: 100%;
+            }
+            .top-bar .logout {
+                display: none; /* Hide logout in top-bar on mobile */
+            }
+        }
+
+        @media (min-width: 769px) {
+            .sidebar {
+                left: 0;
+            }
+            .main-content {
+                margin-left: 250px;
+                width: calc(100% - 250px);
+            }
+            .menu-button {
+                display: none; /* Hide menu button on desktop */
+            }
+            .top-bar .logout {
+                display: block; /* Show logout in top-bar on desktop */
+            }
+        }
     </style>
 </head>
 <body>
+    <button class="menu-button" onclick="toggleSidebar()">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </button>
+
     <div class="sidebar">
-        <h2>Company</h2>
+        <h2>Student Dashboard</h2>
         <a href="{{ url_for('student_dashboard') }}">Home</a>
         <a href="{{ url_for('edit_student_profile') }}">Edit Profile</a>
         <a href="{{ url_for('student_logout') }}" class="logout">Logout</a>
@@ -180,5 +250,11 @@
         </div>
     </div>
 
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>

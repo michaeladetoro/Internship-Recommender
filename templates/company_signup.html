@@ -6,6 +6,7 @@
     <title>Company Signup</title>
     <style>
         /* Import Google Fonts */
+        /* Import Google Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
         body {
@@ -18,6 +19,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            overflow: hidden; /* Prevent scrolling */
         }
 
         .container {
@@ -29,6 +31,7 @@
             text-align: center;
             max-width: 400px;
             width: 100%;
+            margin: 0 20px; /* Margin on the sides */
         }
 
         h1 {
@@ -43,7 +46,7 @@
             align-items: center;
         }
 
-        input[type="email"], input[type="password"], input[type="text"] {
+        input {
             padding: 15px;
             margin: 10px 0;
             width: 100%;
@@ -57,7 +60,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        input[type="email"]::placeholder, input[type="password"]::placeholder, input[type="text"]::placeholder {
+        input::placeholder {
             color: #ddd;
         }
 
@@ -78,6 +81,21 @@
         button:hover {
             background-color: #0056b3;
             transform: translateY(-3px);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 0 20px; /* Margin for small screens */
+            }
+
+            .container {
+                padding: 30px;
+                margin: 0; /* Remove side margin on very small screens */
+            }
+
+            input, button {
+                max-width: 100%;
+            }
         }
     </style>
 </head>

@@ -18,6 +18,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            overflow: hidden; /* Prevent scrolling */
         }
 
         .container {
@@ -29,6 +30,7 @@
             text-align: center;
             max-width: 400px;
             width: 100%;
+            margin: 0 20px; /* Margin on the sides */
         }
 
         h1 {
@@ -79,13 +81,28 @@
             background-color: #0056b3;
             transform: translateY(-3px);
         }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 0 20px; /* Margin for small screens */
+            }
+
+            .container {
+                padding: 30px;
+                margin: 0; /* Remove side margin on very small screens */
+            }
+
+            input, button {
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Student Signup</h1>
         <form method="POST" action="{{ url_for('student_signup') }}">
-            <input type="name" name="name" placeholder="Name" required>
+            <input type="text" name="name" placeholder="Name" required>
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
             <input type="text" name="course_of_study" placeholder="Course of Study" required>

@@ -75,6 +75,40 @@
         .back-button:active {
             transform: translateY(1px);
         }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+            .recommendation-card {
+                padding: 15px;
+            }
+            .back-button {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.2em;
+                margin-bottom: 10px;
+            }
+            .recommendations-grid {
+                grid-template-columns: 1fr;
+            }
+            .recommendation-card {
+                padding: 10px;
+            }
+            .back-button {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+        }
     </style>
 </head>
 <body>
