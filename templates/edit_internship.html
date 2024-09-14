@@ -143,6 +143,9 @@
             
             <label for="description">Description</label>
             <textarea id="description" name="description" rows="4" required>{{ internship.description }}</textarea>
+
+            <label for="requirements">Requirements</label>
+            <textarea id="requirements" name="requirements" rows="4" required>{{ internship.requirements }}</textarea>
             
             <label for="location">Location</label>
             <input type="text" id="location" name="location" value="{{ internship.location }}" required>
@@ -152,9 +155,6 @@
             
             <label for="duration">Duration</label>
             <input type="text" id="duration" name="duration" value="{{ internship.duration }}" required>
-            
-            <label for="requirements">Requirements</label>
-            <textarea id="requirements" name="requirements" rows="4" required>{{ internship.requirements }}</textarea>
             
             <button type="submit">Update Internship</button>
         </form>

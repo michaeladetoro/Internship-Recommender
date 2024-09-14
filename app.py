@@ -210,7 +210,6 @@ def post_internship():
         duration = request.form.get('duration')
         requirements = request.form.get('requirements')
         new_internship = Internship(role=role, description=description, location=location, company_id=company.id, start_date=start_date, duration=duration, requirements=requirements)
-        print(new_internship)
         db.session.add(new_internship)
         db.session.commit()
         return redirect(url_for('company_dashboard'))
@@ -242,14 +241,11 @@ def edit_internship(internship_id):
         internship.role = request.form.get('role')
         internship.description = request.form.get('description')
         internship.location = request.form.get('location')
-        # Convert the string date to a Python date object
         start_date_str = request.form.get('start_date')
         internship.start_date = datetime.strptime(start_date_str, '%Y-%m-%d').date()
         internship.duration = request.form.get('duration')
         internship.requirements = request.form.get('requirements')
-
         db.session.commit()
-        flash('Internship updated successfully.', 'success')
         return redirect(url_for('company_dashboard'))
     
     return render_template('edit_internship.html', internship=internship)
